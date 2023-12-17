@@ -9,7 +9,7 @@ group = 'io.bootify'
 version = '0.0.1-SNAPSHOT'
 
 // java.sourceCompatibility = '21'
-java.targetCompatibility = '21'
+// java.targetCompatibility = '21'
 
 
 bootRun {
