@@ -5,6 +5,16 @@ Feel free to contact us for further questions.
 
 ## Development
 
+First, install JDK 21 from Microsoft from [here](https://learn.microsoft.com/en-us/java/openjdk/download).\
+Clone the repository and open it in your favorite IDE.\
+
+In VSCode, install the following extensions:
+
+* [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+* [Lombok Annotations Support for VS Code](https://marketplace.visualstudio.com/items?itemName=GabrielBB.vscode-lombok)
+* [Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot)
+* [Spring Boot Dashboard](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard)
+
 Update your local database connection in `application.yml` or create your own `application-local.yml` file to override
 settings for development.
 
