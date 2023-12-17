@@ -16,7 +16,7 @@ In VSCode, install the following extensions:
 * [Spring Boot Dashboard](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard)
 
 Update your local database connection in `application.yml` or create your own `application-local.yml` file to override
-settings for development.
+settings for development. (This is not necessary for the first start, as the application uses an in-memory database by default.)
 
 During development it is recommended to use the profile `local`. In IntelliJ `-Dspring.profiles.active=local` can be
 added in the VM options of the Run Configuration after enabling this property in "Modify options".
