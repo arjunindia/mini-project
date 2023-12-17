@@ -11,19 +11,25 @@ settings for development.
 During development it is recommended to use the profile `local`. In IntelliJ `-Dspring.profiles.active=local` can be
 added in the VM options of the Run Configuration after enabling this property in "Modify options".
 
+The application can be started with the following command:
+
+```bash
+gradlew bootRun
+```
+
 Lombok must be supported by your IDE. For IntelliJ install the Lombok plugin and enable annotation processing -
 [learn more](https://bootify.io/next-steps/spring-boot-with-lombok.html).
 
 In addition to the Spring Boot application, the DevServer must also be started. [Node.js](https://nodejs.org/) has to be
 available on the system - the latest LTS version is recommended. On first usage and after updates the dependencies have to be installed:
 
-```
+```bash
 npm install
 ```
 
 The DevServer can now be started as follows:
 
-```
+```bash
 npm run devserver
 ```
 
@@ -34,7 +40,7 @@ files are immediately visible in the browser.
 
 The application can be built using the following command:
 
-```
+```bash
 gradlew clean build
 ```
 
@@ -42,14 +48,14 @@ Node.js is automatically downloaded using the `gradle-node-plugin` and the final
 
 Start your application with the following command - here with the profile `production`:
 
-```
+```bash
 java -Dspring.profiles.active=production -jar ./build/libs/mini-project-0.0.1-SNAPSHOT.jar
 ```
 
 If required, a Docker image can be created with the Spring Boot plugin. Add `SPRING_PROFILES_ACTIVE=production` as
 environment variable when running the container.
 
-```
+```bash
 gradlew bootBuildImage --imageName=io.bootify/mini-project
 ```
 
