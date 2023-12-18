@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  layout:decorate="~{layout}"
+>
+  <head>
+    <title>Please Log In</title>
+  </head>
+  <body layout:fragment="content">
+    <h1>Please Log In</h1>
+    <div th:if="${param.error}">Invalid username and password.</div>
+    <div th:if="${param.logout}">You have been logged out.</div>
+    <form th:action="@{/login}" method="post">
+      <div
+        th:replace="~{fragments/forms::inputRow(object='user', field='username', required=true)}"
+      />
+      <div
+        th:replace="~{fragments/forms::inputRow(object='user', field='password', type='password')}"
+      />
+      <input
+        type="submit"
+        value="Log In"
+        class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300 focus:ring-4 rounded px-5 py-2 mt-6"
+      />
+    </form>
+    <button
+      type="button"
+      class="text-gray-500"
+      id="logout"
+      sec:authorize="isAuthenticated()"
+      th:attr="hx-post=@{/logout}"
+      hx-swap="innerHTML"
+      hx-target="body"
+    >
+      Logout
+    </button>
+  </body>
+</html>
