@@ -92,15 +92,16 @@
           <tr th:each="week : ${weeks}" class="text-center h-20">
             <td
               th:each="day : ${week}"
+              th:onclick="'location.href=\'/eventss?date=' + ${day.getTime()} + '\';'"
               class="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300"
+              th:classappend="${day.isToday()} ? 'bg-green-200' : ''"
             >
               <div class="top h-5 w-full">
-                <span class="text-gray-500" th:text="${day}"></span>
+                <span class="text-gray-500" th:text="${day.getDay()}"></span>
               </div>
               <div
                 class="bottom flex-grow h-30 py-1 w-full cursor-pointer"
-                th:if="${day}"
-                th:onclick="'location.href=\'/events?date=' + ${day} + '\';'"
+                th:if="${day.getDay()}"
               >
                 <div
                   class="event bg-purple-400 text-white rounded p-1 text-sm mb-1"

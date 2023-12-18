@@ -9,6 +9,53 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+class Date {
+    private int year;
+    private int month;
+    private int day;
+
+    public Date(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDay() { return day; }
+
+    public int getDayOfWeek() { 
+        LocalDate date = LocalDate.of(year, month, day);
+        return date.getDayOfWeek().getValue();
+    }
+
+    public boolean isToday() { 
+        if(year == 0 || month == 0 || day == 0) {
+            return false;
+        }
+        LocalDate date = LocalDate.of(year, month, day);
+        return date.equals(LocalDate.now());
+     }
+
+    public boolean isCurrentMonth() { 
+        if(year == 0 || month == 0 || day == 0) {
+            return false;
+        }
+        LocalDate date = LocalDate.of(year, month, day);
+        return date.getMonthValue() == LocalDate.now().getMonthValue();
+    }
+
+    public int getTime() {
+        return year * 10000 + month * 100 + day;
+    }
+}
+
 @Controller
 public class CalendarController {
 
@@ -30,18 +77,26 @@ public class CalendarController {
         DayOfWeek firstDayOfWeek = firstDayOfMonth.getDayOfWeek();
 
         // Create a list to store the weeks
-        List<List<Integer>> weeks = new ArrayList<>();
+        List<List<Date>> weeks = new ArrayList<>();
 
         // Populate the weeks list with day numbers
-        List<Integer> week = new ArrayList<>();
+        List<Date> week = new ArrayList<>();
+
         for (int i = 0; i < firstDayOfWeek.getValue(); i++) {
-            week.add(null); // Add empty cells for the days before the first day of the month
+            week.add(new Date(0, 0, 0));
         }
         for (int day = 1; day <= daysInMonth; day++) {
-            week.add(day);
+            LocalDate date = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), day);
+            week.add(new Date(date.getYear(), date.getMonthValue(), date.getDayOfMonth()));
             if (week.size() == 7 || day == daysInMonth) {
-                weeks.add(new ArrayList<>(week));
-                week.clear();
+                weeks.add(week);
+                week = new ArrayList<>();
+            }
+            // add next month days
+            if (day == daysInMonth) {
+                for (int i = 1; i <= 7 - lastDayOfMonth.getDayOfWeek().getValue(); i++) {
+                    week.add(new Date(0, 0, 0));
+                }
             }
         }
 
