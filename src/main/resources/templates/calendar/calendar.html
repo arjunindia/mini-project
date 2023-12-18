@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calendar</title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <h2>Calendar for This Month</h2>
+
+      <table class="w-full">
+        <thead>
+          <tr></tr>
+          <tr>
+            <th
+              class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs"
+            >
+              <span class="xl:block lg:block md:block sm:block hidden"
+                >Sunday</span
+              >
+              <span class="xl:hidden lg:hidden md:hidden sm:hidden block"
+                >Sun</span
+              >
+            </th>
+            <th
+              class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs"
+            >
+              <span class="xl:block lg:block md:block sm:block hidden"
+                >Monday</span
+              >
+              <span class="xl:hidden lg:hidden md:hidden sm:hidden block"
+                >Mon</span
+              >
+            </th>
+            <th
+              class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs"
+            >
+              <span class="xl:block lg:block md:block sm:block hidden"
+                >Tuesday</span
+              >
+              <span class="xl:hidden lg:hidden md:hidden sm:hidden block"
+                >Tue</span
+              >
+            </th>
+            <th
+              class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs"
+            >
+              <span class="xl:block lg:block md:block sm:block hidden"
+                >Wednesday</span
+              >
+              <span class="xl:hidden lg:hidden md:hidden sm:hidden block"
+                >Wed</span
+              >
+            </th>
+            <th
+              class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs"
+            >
+              <span class="xl:block lg:block md:block sm:block hidden"
+                >Thursday</span
+              >
+              <span class="xl:hidden lg:hidden md:hidden sm:hidden block"
+                >Thu</span
+              >
+            </th>
+            <th
+              class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs"
+            >
+              <span class="xl:block lg:block md:block sm:block hidden"
+                >Friday</span
+              >
+              <span class="xl:hidden lg:hidden md:hidden sm:hidden block"
+                >Fri</span
+              >
+            </th>
+            <th
+              class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs"
+            >
+              <span class="xl:block lg:block md:block sm:block hidden"
+                >Saturday</span
+              >
+              <span class="xl:hidden lg:hidden md:hidden sm:hidden block"
+                >Sat</span
+              >
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="week : ${weeks}" class="text-center h-20">
+            <td
+              th:each="day : ${week}"
+              class="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300"
+            >
+              <div class="top h-5 w-full">
+                <span class="text-gray-500" th:text="${day}"></span>
+              </div>
+              <div
+                class="bottom flex-grow h-30 py-1 w-full cursor-pointer"
+                th:if="${day}"
+                th:onclick="'location.href=\'/events?date=' + ${day} + '\';'"
+              >
+                <div
+                  class="event bg-purple-400 text-white rounded p-1 text-sm mb-1"
+                >
+                  <span class="event-name"> Meeting </span>
+                  <span class="time"> 12:00~14:00 </span>
+                </div>
+                <div
+                  class="event bg-purple-400 text-white rounded p-1 text-sm mb-1"
+                >
+                  <span class="event-name"> Meeting </span>
+                  <span class="time"> 18:00~20:00 </span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
